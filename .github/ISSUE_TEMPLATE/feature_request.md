@@ -4,7 +4,7 @@ about: Historias técnicas
 title: HT-XX | Historia técnica
 labels: ''
 assignees: ''
-type: Feature
+type: Task
 
 ---
 
