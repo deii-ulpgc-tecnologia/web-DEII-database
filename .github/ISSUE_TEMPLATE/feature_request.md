@@ -1,0 +1,17 @@
+---
+name: Feature request
+about: Historias técnicas
+title: HT-XX | Historia técnica
+labels: ''
+assignees: ''
+type: Task
+
+---
+
+**Como** 
+**Quiero** 
+**Para** 
+
+---
+### Validaciones
+- [ ] **Validación 1:** Dado ... cuando ... entonces ...
