@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web_deii_app.apps.WebDeiiAppConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
