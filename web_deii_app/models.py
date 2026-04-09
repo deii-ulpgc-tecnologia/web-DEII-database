@@ -6,4 +6,4 @@ class Faq(models.Model):
     id = models.AutoField(primary_key=True)
     category = models.CharField(max_length=255, blank=False, null=False)
     question = models.CharField(max_length=255, blank=False, null=False)
-    answer = models.TextField()
+    answer = models.TextField(max_length=2048)
