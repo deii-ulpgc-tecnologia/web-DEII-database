@@ -11,8 +11,9 @@ class Subjects(models.Model):
     semester = models.IntegerField(blank=False, null=False)
     area = models.CharField(max_length=255, blank=False, null=False)
 
+
 def file_path(instance, filename):
-    pass # TODO
+    return "{0}/{1}".format(instance.subject_id, filename) # id_de_asignatura/archivo
 
 class Files(models.Model):
     id = models.AutoField(primary_key=True)
@@ -22,6 +23,7 @@ class Files(models.Model):
     is_active = models.BooleanField(default=False)
     # TODO approver_id
     publish_date = models.DateField(blank=False, null=False)
+
 
 class Faq(models.Model):
     id = models.AutoField(primary_key=True)
