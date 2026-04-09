@@ -11,9 +11,17 @@ class Subjects(models.Model):
     semester = models.IntegerField(blank=False, null=False)
     area = models.CharField(max_length=255, blank=False, null=False)
 
-class Tags(models.Model):
+def file_path(instance, filename):
+    pass # TODO
+
+class Files(models.Model):
     id = models.AutoField(primary_key=True)
-    tag = models.CharField(max_length=255, blank=False, null=False)
+    subject_id = models.ForeignKey(Subjects, on_delete=models.SET_NULL)
+    uploader = models.CharField(max_length=255, blank=False, null=False)
+    file = models.FileField(upload_to=file_path, blank=False, null=False, unique=True)
+    is_active = models.BooleanField(default=False)
+    # TODO approver_id
+    publish_date = models.DateField(blank=False, null=False)
 
 class Faq(models.Model):
     id = models.AutoField(primary_key=True)
