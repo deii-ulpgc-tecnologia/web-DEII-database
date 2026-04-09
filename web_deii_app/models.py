@@ -15,6 +15,7 @@ class Subjects(models.Model):
 def file_path(instance, filename):
     return "{0}/{1}".format(instance.subject_id, filename) # id_de_asignatura/archivo
 
+
 class Files(models.Model):
     id = models.AutoField(primary_key=True)
     subject_id = models.ManyToManyField(Subjects, related_name='id', blank=False)
@@ -23,6 +24,17 @@ class Files(models.Model):
     is_active = models.BooleanField(default=False)
     # TODO approver_id
     publish_date = models.DateField(blank=False, null=False)
+
+
+class NewsPosts(models.Model):
+    id = models.AutoField(primary_key=True)
+    # todo user_id
+    title = models.CharField(max_length=255, blank=False, null=False)
+    content = models.TextField(blank=False, null=False)
+    is_active = models.BooleanField(default=False)
+    pinned = models.BooleanField(default=False)
+    publish_date = models.DateField(blank=False, null=False)
+    edited_date = models.DateField(blank=False, null=False)
 
 
 class Faq(models.Model):
