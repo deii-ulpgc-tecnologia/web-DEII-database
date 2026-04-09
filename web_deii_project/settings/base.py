@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'web_deii_project.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         "OPTIONS": {
             "service": os.environ.get("PGSERVICE"),
             "passfile": os.environ.get("PGPASSFILE"),
