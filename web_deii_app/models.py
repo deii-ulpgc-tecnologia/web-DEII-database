@@ -17,7 +17,7 @@ def file_path(instance, filename):
 
 class Files(models.Model):
     id = models.AutoField(primary_key=True)
-    subject_id = models.ForeignKey(Subjects, on_delete=models.SET_NULL)
+    subject_id = models.ManyToManyField(Subjects, related_name='id', blank=False)
     uploader = models.CharField(max_length=255, blank=False, null=False)
     file = models.FileField(upload_to=file_path, blank=False, null=False, unique=True)
     is_active = models.BooleanField(default=False)
