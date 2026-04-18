@@ -58,6 +58,11 @@ class Subject(models.Model):
 def file_path(instance, filename):
     return "{0}/{1}".format(instance.subject_id, filename) # id_de_asignatura/archivo
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255, blank=False, null=False)
+
+    def __str__(self):
+        return self.name
 
 class File(models.Model):
     id = models.AutoField(primary_key=True)
@@ -67,6 +72,7 @@ class File(models.Model):
     is_active = models.BooleanField(default=False)
     approver_id = models.ForeignKey('User', related_name='files_id', on_delete=models.SET_NULL, null=True)
     publish_date = models.DateField(null=True)
+    tags = models.ManyToManyField('Tag', related_name='files_id', blank=True)
 
 
 class NewsPost(models.Model):
