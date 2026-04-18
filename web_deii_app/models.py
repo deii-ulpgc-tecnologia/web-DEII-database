@@ -46,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-class Subjects(models.Model):
+class Subject(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     degree = models.CharField(max_length=255, blank=False, null=False)
@@ -59,9 +59,9 @@ def file_path(instance, filename):
     return "{0}/{1}".format(instance.subject_id, filename) # id_de_asignatura/archivo
 
 
-class Files(models.Model):
+class File(models.Model):
     id = models.AutoField(primary_key=True)
-    subject_id = models.ManyToManyField(Subjects, related_name='files_id', blank=False)
+    subject_id = models.ManyToManyField(Subject, related_name='files_id', blank=False)
     uploader = models.CharField(max_length=255, blank=False, null=False)
     file = models.FileField(upload_to=file_path, blank=False, null=False, unique=True)
     is_active = models.BooleanField(default=False)
@@ -69,7 +69,7 @@ class Files(models.Model):
     publish_date = models.DateField(blank=False, null=False)
 
 
-class NewsPosts(models.Model):
+class NewsPost(models.Model):
     id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey('User', related_name='posts_id', on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255, blank=False, null=False)
