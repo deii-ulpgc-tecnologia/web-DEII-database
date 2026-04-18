@@ -66,7 +66,7 @@ class File(models.Model):
     file = models.FileField(upload_to=file_path, blank=False, null=False, unique=True)
     is_active = models.BooleanField(default=False)
     approver_id = models.ForeignKey('User', related_name='files_id', on_delete=models.SET_NULL, null=True)
-    publish_date = models.DateField(blank=False, null=False)
+    publish_date = models.DateField(null=True)
 
 
 class NewsPost(models.Model):
@@ -77,7 +77,7 @@ class NewsPost(models.Model):
     is_active = models.BooleanField(default=False)
     pinned = models.BooleanField(default=False)
     publish_date = models.DateField(blank=False, null=False)
-    edited_date = models.DateField(blank=False, null=False)
+    edited_date = models.DateField(null=True)
 
 
 class Faq(models.Model):
