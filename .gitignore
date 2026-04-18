@@ -135,7 +135,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+.pgsql/.env.dev
 .envrc
 .venv
 env/
