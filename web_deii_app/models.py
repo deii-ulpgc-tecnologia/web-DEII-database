@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(unique=True, max_length=255, blank=False, null=False)
-    email = models.CharField(unique=True, max_length=255, blank=False, null=False)
+    email = models.EmailField(unique=True, max_length=255, blank=False, null=False)
     password = models.CharField(max_length=255, blank=False, null=False)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -56,7 +56,7 @@ class Subject(models.Model):
 
 
 def file_path(instance, filename):
-    return "{0}/{1}".format(instance.subject_id, filename) # id_de_asignatura/archivo
+    return "{0}".format(filename) # id_de_asignatura/archivo
 
 class Tag(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
@@ -66,13 +66,13 @@ class Tag(models.Model):
 
 class File(models.Model):
     id = models.AutoField(primary_key=True)
-    subject_id = models.ManyToManyField(Subject, related_name='files_id', blank=False)
+    subject_id = models.ManyToManyField(Subject, related_name='files', blank=False)
     uploader = models.CharField(max_length=255, blank=False, null=False)
     file = models.FileField(upload_to=file_path, blank=False, null=False, unique=True)
     is_active = models.BooleanField(default=False)
-    approver_id = models.ForeignKey('User', related_name='files_id', on_delete=models.SET_NULL, null=True)
+    approver_id = models.ForeignKey('User', related_name='approved_files', on_delete=models.SET_NULL, null=True)
     publish_date = models.DateField(null=True)
-    tags = models.ManyToManyField('Tag', related_name='files_id', blank=True)
+    tags = models.ManyToManyField('Tag', related_name='tagged_files', blank=True)
 
 
 class NewsPost(models.Model):
