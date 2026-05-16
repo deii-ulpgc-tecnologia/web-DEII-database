@@ -12,7 +12,12 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-dotenv_path = BASE_DIR / '.venv' / '.pgsql' / '.env.dev'
+dotenv_path = BASE_DIR / '.venv' / '.pgsql' / '.env'
+
+print("DOTENV PATH:", dotenv_path)
+print("EXISTS:", dotenv_path.exists())
+load_dotenv(dotenv_path)
+print("PGPASSFILE AFTER LOAD:", os.environ.get("PGPASSFILE"))
 
 load_dotenv(dotenv_path)
 
