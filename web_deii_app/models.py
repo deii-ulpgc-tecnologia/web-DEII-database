@@ -70,15 +70,15 @@ def file_path(instance, filename):
 
 def pending_upload_path(instance, filename):
     ext = filename.split('.')[-1]
-    return f"pending/{uuid.uuid4()}.{ext}"
+    return f"pending/{instance.id}.{ext}"
 
 def approved_upload_path(instance, filename):
     ext = filename.split('.')[-1]
-    return f"approved/{uuid.uuid4()}.{ext}"
+    return f"approved/{instance.id}.{ext}"
 
 def denied_upload_path(instance, filename):
     ext = filename.split('.')[-1]
-    return f"denied/{uuid.uuid4()}.{ext}"
+    return f"denied/{instance.id}.{ext}"
 
 class File(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
