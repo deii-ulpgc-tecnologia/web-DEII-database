@@ -36,6 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_estudios = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
+    EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['email']
 
     class Meta:
@@ -54,9 +55,8 @@ class Subject(models.Model):
     semester = models.IntegerField(blank=False, null=False)
     area = models.CharField(max_length=255, blank=False, null=False)
 
-
-def file_path(instance, filename):
-    return "{0}".format(filename) # id_de_asignatura/archivo
+    def __str__(self):
+        return self.name
 
 class Tag(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
@@ -64,16 +64,42 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+# Dummy to avoid breaking old migrations. Crashes if removed
+def file_path(instance, filename):
+    return filename
+
+def pending_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    return f"pending/{uuid.uuid4()}.{ext}"
+
+def approved_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    return f"approved/{uuid.uuid4()}.{ext}"
+
+def denied_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    return f"denied/{uuid.uuid4()}.{ext}"
+
 class File(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, blank=False, null=False)
     subject_id = models.ManyToManyField(Subject, related_name='files', blank=False)
     uploader = models.CharField(max_length=255, blank=False, null=False)
-    file = models.FileField(upload_to=file_path, blank=False, null=False, unique=True)
+    file = models.FileField(upload_to=pending_upload_path, blank=False, null=False, unique=True)
     is_active = models.BooleanField(default=False)
-    approver_id = models.ForeignKey('User', related_name='approved_files', on_delete=models.SET_NULL, null=True)
-    publish_date = models.DateField(null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    approved_by = models.ForeignKey(
+        'User',
+        related_name='approved_files',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+    approved_at = models.DateField(null=True, blank=True)
     tags = models.ManyToManyField('Tag', related_name='tagged_files', blank=True)
 
+    def __str__(self):
+        return self.name
 
 class NewsPost(models.Model):
     id = models.AutoField(primary_key=True)
@@ -85,9 +111,14 @@ class NewsPost(models.Model):
     publish_date = models.DateField(blank=False, null=False)
     edited_date = models.DateField(null=True)
 
+    def __str__(self):
+        return self.title
 
 class Faq(models.Model):
     id = models.AutoField(primary_key=True)
     category = models.CharField(max_length=255, blank=False, null=False)
     question = models.CharField(max_length=255, blank=False, null=False)
     answer = models.TextField(max_length=2048)
+
+    def __str__(self):
+        return self.question
