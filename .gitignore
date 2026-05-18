@@ -136,6 +136,7 @@ celerybeat.pid
 
 # Environments
 .pgsql/.env.dev
+.venv/.pgsql/.env.dev
 .envrc
 .venv
 env/
@@ -207,7 +208,7 @@ marimo/_lsp/
 __marimo__/
 
 #postgresql
-.pgsql/
+.venv/.pgsql/
 .pgpass
 .pg_service.conf
 pg_service.conf
