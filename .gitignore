@@ -213,3 +213,7 @@ __marimo__/
 .pg_service.conf
 pg_service.conf
 *.pgpass
+
+#server files
+*/media/
+*/static/
