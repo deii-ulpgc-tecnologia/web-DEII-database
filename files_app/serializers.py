@@ -12,7 +12,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 class FilePublicSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
-    subject_id = serializers.PrimaryKeyRelatedField(many=True, queryset=Subject.objects.all())
+    subject_id = serializers.SlugRelatedField(many=True, queryset=Subject.objects.all(), slug_field='name')
 
     class Meta:
         model = File
