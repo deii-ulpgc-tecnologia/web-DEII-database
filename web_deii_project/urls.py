@@ -17,7 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        "admin": request.build_absolute_uri("admin/"),
+        "api": request.build_absolute_uri("api/"),
+        "files": request.build_absolute_uri("files/"),
+        "subjects": request.build_absolute_uri("subjects/"),
+        "news": request.build_absolute_uri("news/"),
+    })
+
 urlpatterns = [
+    path('', api_root, name='api-root'),
     path('admin/', admin.site.urls),
     path('api/', include('web_deii_app.urls')),
     path('files/', include('files_app.urls')),
