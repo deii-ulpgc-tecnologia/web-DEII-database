@@ -21,7 +21,7 @@ def denied_upload_path(instance, filename):
 class File(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, blank=False, null=False)
-    subject_id = models.ManyToManyField('web_deii_app.Subject', related_name='files', blank=False)
+    subject_id = models.ManyToManyField('subjects_app.Subject', related_name='files', blank=False)
     uploader = models.CharField(max_length=255, blank=False, null=False)
     file = models.FileField(upload_to=pending_upload_path, blank=False, null=False, unique=True)
     is_active = models.BooleanField(default=False)
@@ -34,7 +34,13 @@ class File(models.Model):
         blank=True
     )
     approved_at = models.DateField(null=True, blank=True)
-    tags = models.ManyToManyField('web_deii_app.Tag', related_name='tagged_files', blank=True)
+    tags = models.ManyToManyField('Tag', related_name='tagged_files', blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Tag(models.Model):
+    name = models.CharField(max_length=255, blank=False, null=False)
 
     def __str__(self):
         return self.name
