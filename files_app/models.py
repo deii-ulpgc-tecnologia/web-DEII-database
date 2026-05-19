@@ -22,7 +22,7 @@ class File(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, blank=False, null=False)
     subject_id = models.ManyToManyField('subjects_app.Subject', related_name='files', blank=False)
-    uploader = models.CharField(max_length=255, blank=False, null=False)
+    uploader = models.EmailField(max_length=255, blank=False, null=False)
     file = models.FileField(upload_to=pending_upload_path, blank=False, null=False, unique=True)
     is_active = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
