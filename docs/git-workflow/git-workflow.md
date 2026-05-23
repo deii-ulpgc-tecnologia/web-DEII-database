@@ -4,6 +4,19 @@ Para mantener un historial de cambios limpio, organizado y fácil de leer, segui
 
 ---
 
+## 📋 Índice
+
+- [Nomenclatura de Ramas](#nomenclatura-de-ramas)
+  - [Estructura de Nombre de Rama](#estructura-de-nombre-de-rama)
+  - [Cómo crear una rama en el IDE (PyCharm)](#cómo-crear-una-rama-en-el-ide-pycharm)
+- [Nomenclatura para Commits](#nomenclatura-para-commits)
+  - [Estructura de un Commit](#estructura-de-un-commit)
+  - [Tipos de Commits](#tipos-de-commits)
+  - [Ejemplos de Comparación](#ejemplos-de-comparación)
+- [Flujo de Integración (Pull Requests)](#flujo-de-integración-pull-requests)
+
+---
+
 ## Nomenclatura de Ramas
 
 Cuando se va a trabajar en una nueva funcionalidad, corrección de errores o tarea, se debe crear una rama independiente a partir de la rama de desarrollo activa (normalmente `unstable`).
@@ -12,15 +25,11 @@ Cuando se va a trabajar en una nueva funcionalidad, corrección de errores o tar
 
 El nombre de la rama debe estar asociado a una **Historia de Usuario (User Story)** o **Ticket**, utilizando la siguiente convención:
 
-```text
-<identificador-ticket>-<nombre-modulo-o-descripcion>
-```
 
-- **identificador-ticket**: El ID de la historia de usuario o ticket (ej. `US-12`, `T-104`).
-- **nombre-modulo-o-descripcion**: El nombre del módulo que se va a modificar o una breve descripción del cambio, en minúsculas y separando las palabras con guiones (`-`).
+![alt text](assets/create_branch.png)
 
-#### Ejemplos:
-- `(insertar ejemplos)`
+
+
 
 
 ### Cómo crear una rama en el IDE (PyCharm)
@@ -39,7 +48,7 @@ El nombre de la rama debe estar asociado a una **Historia de Usuario (User Story
 
 Para los commits del proyecto, utilizamos una convención simplificada basada en *Conventional Commits*.
 
-## Estructura de un Commit
+### Estructura de un Commit
 
 El formato básico debe ser el siguiente:
 
@@ -53,7 +62,7 @@ El formato básico debe ser el siguiente:
 
 ---
 
-## Tipos de Commits
+### Tipos de Commits
 
 Estos son los prefijos que debes utilizar según el cambio realizado:
 
@@ -81,7 +90,7 @@ Estos son los prefijos que debes utilizar según el cambio realizado:
 
 ---
 
-## Ejemplos de Comparación
+### Ejemplos de Comparación
 
 ✅ **Correctos:**
 - `feat (subjects): add new endpoint to list subjects`
@@ -92,3 +101,15 @@ Estos son los prefijos que debes utilizar según el cambio realizado:
 - `Update users` *(No especifica el tipo)*
 - `feat: CREATED LOGIN PAGE.` *(Uso de mayúsculas, verbo en pasado y punto final)*
 - `fixed a bug in subjects view` *(No usa el formato correcto, debería ser `fix (subjects): ...`)*
+
+
+## Flujo de Integración (Pull Requests)
+
+Una vez que se termine de programar la funcionalidad o corrección en su rama, se debe realizar un Pull Request para fusionarla con la rama de desarrollo activa (normalmente `unstable`).
+
+> [!IMPORTANT]
+> **Antes de realizar un Pull Request:**
+> 1. **Pruebas Locales:** Asegúrate de ejecutar y superar todas las pruebas (tests) necesarias localmente.
+> 2. **Eliminación de Ramas:** Una vez que el Pull Request sea aprobado y fusionado, la rama correspondiente debe eliminarse del repositorio remoto para mantener el historial limpio y ordenado.
+
+![Abrir Pull Request](assets/open_pull_request.png)

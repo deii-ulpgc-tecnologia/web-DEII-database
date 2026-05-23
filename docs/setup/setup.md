@@ -4,6 +4,17 @@
 
 ---
 
+## 📋 Índice
+
+- [1. Clonar el repositorio](#1-clonar-el-repositorio)
+- [2. Configurar entorno virtual de Python](#2-configurar-entorno-virtual-de-python)
+- [3. Configurar el IDE](#3-configurar-el-ide)
+  - [3.1 Variables de entorno](#31-variables-de-entorno)
+  - [3.2 Configurar Django](#32-configurar-django)
+  - [3.3 Configuración para la ejecución local](#33-configuración-para-la-ejecución-local)
+
+---
+
 ## 1. Clonar el repositorio
 
 Puedes clonar el repositorio usando la terminal:

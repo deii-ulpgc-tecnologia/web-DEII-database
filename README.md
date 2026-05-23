@@ -6,6 +6,15 @@ Este proyecto está construido con **Django 6.0** y **Django REST Framework (DRF
 
 ---
 
+## 📋 Índice
+
+- [📂 Estructura del Proyecto](#-estructura-del-proyecto)
+- [🛠️ Tecnologías Utilizadas](#-tecnologías-utilizadas)
+- [🚀 Instalación y Configuración Rápida](#-instalación-y-configuración-rápida)
+- [🔄 Flujo de Trabajo en Git](#-flujo-de-trabajo-en-git)
+
+---
+
 ## 📂 Estructura del Proyecto
 
 El proyecto está organizado en diferentes aplicaciones de Django para mantener una arquitectura modular y escalable:
@@ -52,7 +61,6 @@ web-DEII-database/
 Para poner en marcha el proyecto localmente, sigue estos pasos básicos (para una guía más detallada paso a paso e integración con el IDE, consulta la **[Guía de Preparación del Entorno](docs/setup/setup.md)**):
 
 
-
 ## 🔄 Flujo de Trabajo en Git
 
 Para contribuir al desarrollo del proyecto de forma ordenada, es obligatorio cumplir las siguientes normas:
@@ -61,3 +69,6 @@ Para contribuir al desarrollo del proyecto de forma ordenada, es obligatorio cum
 *   **Mensajes de Commit**: Deben seguir la especificación simplificada de *Conventional Commits* (ej. `feat (users): add login view`).
 
 👉 Consulta todos los detalles y ejemplos en la **[Guía de Flujo de Trabajo en Git](docs/git-workflow/git-workflow.md)**.
+
+
+
