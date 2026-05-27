@@ -1,12 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
-class DegreeEnum(models.TextChoices):
-    GII = "GII", "Ingeniería Informática"
-    GCID = "GCID", "Ciencia e Ingeniería de Datos"
-    GIFM = "GIFM", "Ingeniería Física y Matemática"
-
 class YearEnum(models.IntegerChoices):
     YEAR1 = 1, "primero"
     YEAR2 = 2, "segundo"
@@ -22,11 +16,16 @@ class SemesterEnum(models.IntegerChoices):
     SECOND = 2
     YEAR_LONG = 3, "anual"
 
+class Degree(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, blank=False, null=False)
+    code = models.CharField(max_length=255, blank=False, null=False)
+
 class Subject(models.Model):
     id = models.IntegerField(blank=False, null=False, primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     code = models.CharField(max_length=255, blank=False, null=False)
-    degree = models.CharField(max_length=255, choices=DegreeEnum, default=DegreeEnum.GII, blank=False, null=False)
+    degree = models.ForeignKey(Degree, on_delete=models.PROTECT, blank=False, null=False)
     year = models.IntegerField(choices=YearEnum, default=YearEnum.YEAR1, blank=False, null=False)
     semester = models.IntegerField(choices=SemesterEnum, default=SemesterEnum.FIRST, blank=False, null=False)
     area = models.CharField(max_length=255, blank=False, null=False)
