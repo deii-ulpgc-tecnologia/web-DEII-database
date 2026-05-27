@@ -17,13 +17,18 @@ class YearEnum(models.IntegerChoices):
     MASTER = 7, "master"
     PHD = 8, "phd"
 
+class SemesterEnum(models.IntegerChoices):
+    FIRST = 1
+    SECOND = 2
+    YEAR_LONG = 3, "anual"
+
 class Subject(models.Model):
     id = models.IntegerField(blank=False, null=False, primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     code = models.CharField(max_length=255, blank=False, null=False)
     degree = models.CharField(max_length=255, choices=DegreeEnum, default=DegreeEnum.GII, blank=False, null=False)
     year = models.IntegerField(choices=YearEnum, default=YearEnum.YEAR1, blank=False, null=False)
-    semester = models.IntegerField(blank=False, null=False)
+    semester = models.IntegerField(choices=SemesterEnum, default=SemesterEnum.FIRST, blank=False, null=False)
     area = models.CharField(max_length=255, blank=False, null=False)
 
     def __str__(self):
