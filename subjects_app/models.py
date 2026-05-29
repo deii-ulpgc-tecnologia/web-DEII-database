@@ -36,7 +36,7 @@ class Subject(models.Model):
     degree = models.ForeignKey(Degree, on_delete=models.PROTECT, blank=False, null=False)
     year = models.IntegerField(choices=YearEnum, default=YearEnum.YEAR1, blank=False, null=False)
     semester = models.IntegerField(choices=SemesterEnum, default=SemesterEnum.FIRST, blank=False, null=False)
-    area = models.CharField(max_length=255, blank=False, null=False)
+    area = models.ManyToManyField(knowledge_area, blank=False, null=False)
 
     def __str__(self):
         return self.name
