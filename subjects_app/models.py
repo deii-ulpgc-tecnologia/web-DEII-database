@@ -11,15 +11,23 @@ class YearEnum(models.IntegerChoices):
     MASTER = 7, "master"
     PHD = 8, "phd"
 
+
 class SemesterEnum(models.IntegerChoices):
     FIRST = 1
     SECOND = 2
     YEAR_LONG = 3, "anual"
 
+
 class Degree(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     code = models.CharField(max_length=255, blank=False, null=False)
+
+
+class knowledge_area(models.Model):
+    id = models.AutoField(primary_key=True)
+    area = models.CharField(max_length=255, blank=False, null=False)
+
 
 class Subject(models.Model):
     id = models.IntegerField(blank=False, null=False, primary_key=True)
