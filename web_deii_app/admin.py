@@ -1,4 +1,4 @@
-from web_deii_app.models import Faq, File, NewsPost, Subject, User, Tag
+from web_deii_app.models import Faq, User
 
 from django.contrib import admin
 
@@ -7,27 +7,6 @@ from django.contrib import admin
 class FaqAdmin(admin.ModelAdmin):
     pass
 
-
-@admin.register(File)
-class FileAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(NewsPost)
-class NewsPostAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Subject)
-class SubjectAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
     pass

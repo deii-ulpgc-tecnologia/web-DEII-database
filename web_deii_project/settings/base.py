@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web_deii_app.apps.WebDeiiAppConfig',
+    'files_app.apps.FilesAppConfig',
+    'news_app.apps.NewsAppConfig',
+    'subjects_app.apps.SubjectsAppConfig',
     'rest_framework',
     'rest_framework_simplejwt',
 ]
