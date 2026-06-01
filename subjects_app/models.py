@@ -19,32 +19,26 @@ class SemesterEnum(models.IntegerChoices):
 
 
 class Degree(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     abbreviation = models.CharField(max_length=255, blank=False, null=False)
-
-
-class knowledge_area(models.Model):
-    id = models.AutoField(primary_key=True)
-    area = models.CharField(max_length=255, blank=False, null=False)
-
-
-class Subject(models.Model):
-    id = models.IntegerField(blank=False, null=False, primary_key=True)
-    name = models.CharField(max_length=255, blank=False, null=False)
-    abbreviation = models.CharField(max_length=255, blank=False, null=False, default="TEST")
-    degree = models.ForeignKey(Degree, on_delete=models.PROTECT, blank=False, null=False)
-    year = models.IntegerField(choices=YearEnum, default=YearEnum.YEAR1, blank=False, null=False)
-    semester = models.IntegerField(choices=SemesterEnum, default=SemesterEnum.FIRST, blank=False, null=False)
-    area = models.ManyToManyField(knowledge_area, blank=False)
 
     def __str__(self):
         return self.name
 
+class KnowledgeArea(models.Model):
+    name = models.CharField(max_length=255, blank=False, null=False)
 
-class MyModel(models.Model):
-    pass
+    def __str__(self):
+        return self.name
 
+class Subject(models.Model):
+    id = models.IntegerField(blank=False, null=False, primary_key=True)
+    name = models.CharField(max_length=255, blank=False, null=False)
+    abbreviation = models.CharField(max_length=255, blank=False, null=False)
+    degree = models.ForeignKey(Degree, on_delete=models.PROTECT, blank=False, null=False)
+    year = models.IntegerField(choices=YearEnum, default=YearEnum.YEAR1, blank=False, null=False)
+    semester = models.IntegerField(choices=SemesterEnum, default=SemesterEnum.FIRST, blank=False, null=False)
+    area = models.ManyToManyField(KnowledgeArea, blank=False)
 
-class MyModel(models.Model):
-    pass
+    def __str__(self):
+        return self.name
