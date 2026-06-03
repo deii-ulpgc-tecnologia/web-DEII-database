@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'files_app.apps.FilesAppConfig',
     'news_app.apps.NewsAppConfig',
     'subjects_app.apps.SubjectsAppConfig',
+    'auth_app.apps.AuthAppConfig',
     'rest_framework',
     'rest_framework_simplejwt',
 ]
