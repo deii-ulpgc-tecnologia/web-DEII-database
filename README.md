@@ -17,12 +17,13 @@ Este proyecto está construido con **Django 6.0** y **Django REST Framework (DRF
 
 ## 📂 Estructura del Proyecto
 
-El proyecto está organizado en diferentes aplicaciones de Django para mantener una arquitectura modular y escalable:
+El proyecto está organizado en diferentes aplicaciones de Django para mantener una arquitectura modular y escalable (para ver una explicación detallada de cómo se compone un módulo y la división de responsabilidades de cada archivo, consulta la **[Guía de Estructura de Módulos](docs/module-structure/module-structure.md)**):
 
 ```text
 web-DEII-database/
 ├── docs/                     # Documentación general del proyecto
 │   ├── git-workflow/         # Guía de estilo de Git (ramas y commits)
+│   ├── module-structure/     # Guía de estructura de módulos (Django apps) y responsabilidades
 │   └── setup/                # Guía de preparación del entorno de desarrollo
 ├── web_deii_project/         # Configuración global del proyecto Django (settings, urls, wsgi)
 │   └── settings/             # Ajustes divididos por entornos (base, dev, prod, test)
@@ -60,6 +61,8 @@ web-DEII-database/
 
 Para poner en marcha el proyecto localmente, sigue estos pasos básicos (para una guía más detallada paso a paso e integración con el IDE, consulta la **[Guía de Preparación del Entorno](docs/setup/setup.md)**):
 
+> [!WARNING]
+> <span style="color: red;">**AVISO:** En entorno local no intentes subir ningún archivo, ya que la ruta se guarda de forma local y puede dar problemas.</span>
 
 ## 🔄 Flujo de Trabajo en Git
 

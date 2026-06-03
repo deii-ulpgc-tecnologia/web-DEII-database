@@ -1,3 +1,3 @@
-- [ ] Falta poner un ejemplo de flujo de trabajo
-- [ ] Falta poner un resumen de las tecnologias utilizadas asi como una descripcion de la arquitectura del proyecto
+- [x] Falta poner un ejemplo de flujo de trabajo ( desde crear una nueva app, hasta como se edita  ) (Ver [module-structure.md](file:///c:/dev/Deii/docs/module-structure/module-structure.md))
+- [x] Falta poner un resumen de las tecnologias utilizadas asi como una descripcion de la arquitectura del proyecto
 - [x] Falta poner control de ramas
