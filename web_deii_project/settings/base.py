@@ -86,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'web_deii_app.User'
+AUTH_USER_MODEL = 'auth_app.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (

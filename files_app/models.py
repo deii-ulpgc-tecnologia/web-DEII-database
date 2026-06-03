@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 import uuid
 
 # Create your models here.
@@ -27,7 +28,7 @@ class File(models.Model):
     is_active = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     approved_by = models.ForeignKey(
-        'web_deii_app.User',
+        settings.AUTH_USER_MODEL,
         related_name='approved_files',
         on_delete=models.SET_NULL,
         null=True,
