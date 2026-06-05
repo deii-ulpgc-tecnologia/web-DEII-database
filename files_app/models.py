@@ -3,10 +3,6 @@ from django.conf import settings
 import uuid
 
 # Create your models here.
-# Dummy to avoid breaking old migrations. Crashes if removed
-def file_path(instance, filename):
-    return filename
-
 def pending_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     return f"pending/{instance.id}.{ext}"
