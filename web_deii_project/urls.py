@@ -34,6 +34,7 @@ urlpatterns = [
     path('', api_root, name='api-root'),
     path('admin/', admin.site.urls),
     path('api/', include('web_deii_app.urls')),
+    path('auth/', include('auth_app.urls')),
     path('files/', include('files_app.urls')),
     path('subjects/', include('subjects_app.urls')),
     path('news/', include('news_app.urls')),

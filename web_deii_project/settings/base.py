@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'files_app.apps.FilesAppConfig',
     'news_app.apps.NewsAppConfig',
     'subjects_app.apps.SubjectsAppConfig',
+    'auth_app.apps.AuthAppConfig',
     'rest_framework',
     'rest_framework_simplejwt',
 ]
@@ -86,7 +87,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'web_deii_app.User'
+AUTH_USER_MODEL = 'auth_app.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
