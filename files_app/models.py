@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
+from .validators import file_size_by_category_validator, extension_whitelist_validator
 import uuid
 
-# Create your models here.
 def pending_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     return f"pending/{instance.id}.{ext}"
@@ -20,7 +20,13 @@ class File(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
     subject_id = models.ManyToManyField('subjects_app.Subject', related_name='files', blank=False)
     uploader = models.EmailField(max_length=255, blank=False, null=False)
-    file = models.FileField(upload_to=pending_upload_path, blank=False, null=False, unique=True)
+    file = models.FileField(
+        upload_to=pending_upload_path,
+        blank=False,
+        null=False,
+        unique=True,
+        validators=[file_size_by_category_validator,extension_whitelist_validator]
+    )
     is_active = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     approved_by = models.ForeignKey(
