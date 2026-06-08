@@ -13,20 +13,20 @@ class TagSerializer(serializers.ModelSerializer):
 
 class FileListSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
-    subjects = serializers.SlugRelatedField(many=True, read_only=True, slug_field='combined_abbreviation', source='subject_id')
+    subjects = serializers.SlugRelatedField(many=True, read_only=True, slug_field='combined_abbreviation')
 
     class Meta:
             model = File
             fields = ['id', 'name', 'extension', 'subjects', 'tags']
-            read_only_fields = ['id', 'name']
+            read_only_fields = ['id', 'name', 'extension']
 
 class FilePublicSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
-    subject_id = serializers.SlugRelatedField(many=True, queryset=Subject.objects.all(), slug_field='name')
+    subjects = serializers.SlugRelatedField(many=True, queryset=Subject.objects.all(), slug_field='name')
 
     class Meta:
         model = File
-        fields = ['id', 'name', 'subject_id', 'uploader', 'file', 'tags', 'approved_at']
+        fields = ['id', 'name', 'subjects', 'uploader', 'file', 'tags', 'approved_at']
         read_only_fields = ['id', 'approved_at']
 
     def validate_file(self, f):
