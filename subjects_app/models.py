@@ -40,5 +40,9 @@ class Subject(models.Model):
     semester = models.IntegerField(choices=SemesterEnum, default=SemesterEnum.FIRST, blank=False, null=False)
     area = models.ManyToManyField(KnowledgeArea, blank=False)
 
+    @property
+    def combined_abbreviation(self):
+        return f"{self.abbreviation} - {self.degree.abbreviation}"
+
     def __str__(self):
         return self.name

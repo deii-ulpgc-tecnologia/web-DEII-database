@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.conf import settings
 from .validators import file_size_by_category_validator, extension_whitelist_validator
@@ -38,6 +40,10 @@ class File(models.Model):
     )
     approved_at = models.DateField(null=True, blank=True)
     tags = models.ManyToManyField('Tag', related_name='tagged_files', blank=True)
+
+    @property
+    def extension(self):
+        return (os.path.splitext(self.file.name)[1]).replace('.', '')
 
     def __str__(self):
         return self.name

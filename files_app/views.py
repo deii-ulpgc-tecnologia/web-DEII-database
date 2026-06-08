@@ -12,10 +12,17 @@ class TagViewSet(viewsets.ReadOnlyModelViewSet):
 
 class FilePublicViewSet(viewsets.ModelViewSet):
     http_method_names = ["get", "post", "head", "options"]
-    serializer_class = FilePublicSerializer
-    queryset = File.objects.filter(is_active=True).order_by("-approved_at")
+    queryset = File.objects.filter(is_active=True).prefetch_related('subject_id__degree').order_by("-approved_at")
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = FilePublicFilter
     search_fields = ['name']
     ordering_fields = ['name','approved_at']
+
+    #default serializer
+    serializer_class = FilePublicSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return FileListSerializer
+        return FilePublicSerializer
