@@ -16,7 +16,7 @@ class FilePublicViewSet(viewsets.ModelViewSet):
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = FilePublicFilter
-    search_fields = ['name']
+    search_fields = ['name', 'subjects__name', 'subjects__abbreviation']
     ordering_fields = ['name','approved_at']
 
     #default serializer
