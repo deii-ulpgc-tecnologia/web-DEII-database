@@ -217,3 +217,7 @@ pg_service.conf
 #server files
 */media/
 */static/
+
+pending/
+approved/
+denied/
