@@ -45,3 +45,15 @@ class FilePrivateListSerializer(serializers.ModelSerializer):
         model = File
         fields = ['id', 'name', 'extension', 'subjects', 'status_display']
         read_only_fields = ['id', 'name', 'extension', 'status_display']
+
+class FilePrivateSerializer(serializers.ModelSerializer):
+    tags = serializers.SlugRelatedField(many=True, queryset=Subject.objects.all(), slug_field='name')
+    subjects = serializers.SlugRelatedField(many=True, queryset=Subject.objects.all(), slug_field='name')
+    status_display = serializers.CharField(read_only=True, source='get_status_display')
+
+    class Meta:
+        model = File
+        fields = ['id', 'name', 'file', 'extension', 'subjects', 'tags', 'uploader', 'uploaded_at', 'status_display',
+                  'approved_by', 'approved_at']
+        read_only_fields = ['id', 'file', 'extension', 'uploader', 'uploaded_at', 'status_display',
+                            'approved_by', 'approved_at']
