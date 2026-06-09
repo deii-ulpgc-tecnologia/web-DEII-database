@@ -5,6 +5,11 @@ from django.conf import settings
 from .validators import file_size_by_category_validator, extension_whitelist_validator
 import uuid
 
+class StatusEnum(models.IntegerChoices):
+    PENDING = 0, "Pendiente"
+    APPROVED= 1, "Aprobado"
+    DENIED = 2, "Denegado"
+
 def pending_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     return f"pending/{instance.id}.{ext}"
@@ -31,7 +36,7 @@ class File(models.Model):
     )
     extension = models.CharField(max_length=16, blank=True, null=False, editable=False)
 
-    is_active = models.BooleanField(default=False)
+    status = models.IntegerField(choices=StatusEnum, default=StatusEnum.PENDING, blank=False, null=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     approved_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
