@@ -36,3 +36,12 @@ class FilePublicSerializer(serializers.ModelSerializer):
         except ValidationError as e:
             raise serializers.ValidationError(e.messages)
         return f
+
+class FilePrivateListSerializer(serializers.ModelSerializer):
+    subjects = serializers.SlugRelatedField(many=True, read_only=True, slug_field='combined_abbreviation')
+    status_display = serializers.CharField(read_only=True, source='get_status_display')
+
+    class Meta:
+        model = File
+        fields = ['id', 'name', 'extension', 'subjects', 'status_display']
+        read_only_fields = ['id', 'name', 'extension', 'status_display']
