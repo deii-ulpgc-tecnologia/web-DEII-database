@@ -1,9 +1,15 @@
 from django.contrib import admin
+from news_app.models import NewsPost, NewsImage
 
-from news_app.models import NewsPost
+
+class NewsImageInline(admin.TabularInline):
+    model = NewsImage
+    extra = 3
+    max_num = 10
 
 
 # Register your models here.
 @admin.register(NewsPost)
 class NewsPostAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'publish_date', 'is_active', 'pinned')
+    inlines = [NewsImageInline]
